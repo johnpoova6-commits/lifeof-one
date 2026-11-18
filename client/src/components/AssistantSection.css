@@ -1,0 +1,268 @@
+.assistant-section {
+  background: #fcf6f2;
+  overflow: hidden;
+}
+
+.assistant-inner {
+  align-items: center;
+  display: grid;
+  gap: clamp(50px, 9vw, 120px);
+  grid-template-columns: 0.9fr 1.1fr;
+  min-height: 520px;
+  padding-bottom: 78px;
+  padding-top: 78px;
+}
+
+.assistant-copy {
+  max-width: 435px;
+}
+
+.assistant-copy .section-lead {
+  margin-bottom: 19px;
+}
+
+.assistant-benefits {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.assistant-benefits span {
+  align-items: center;
+  color: #6c7d71;
+  display: flex;
+  font-size: 10px;
+  gap: 9px;
+}
+
+.assistant-benefits svg {
+  color: #6e9a79;
+}
+
+.assistant-art {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 340px;
+  position: relative;
+}
+
+.assistant-window {
+  background: #fff;
+  border: 1px solid #f1ece8;
+  border-radius: 12px;
+  box-shadow: 0 22px 58px rgba(105, 78, 61, 0.12);
+  max-width: 445px;
+  padding: 0 18px 16px;
+  position: relative;
+  transform: rotate(2deg);
+  width: 100%;
+  z-index: 1;
+}
+
+.assistant-window-head {
+  align-items: center;
+  border-bottom: 1px solid #f2efec;
+  display: flex;
+  gap: 9px;
+  min-height: 57px;
+}
+
+.assistant-avatar {
+  align-items: center;
+  background: #eef4ea;
+  border-radius: 8px;
+  color: #6e9a70;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.assistant-window-head > span:nth-child(2) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.assistant-window-head strong {
+  color: #405248;
+  font-size: 10px;
+}
+
+.assistant-window-head small {
+  color: #99a39b;
+  font-size: 8px;
+}
+
+.online-dot {
+  background: #78ae82;
+  border: 2px solid #eaf5e9;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+}
+
+.chat-date {
+  color: #a7aaa6;
+  font-size: 6px;
+  letter-spacing: 0.8px;
+  margin: 17px 0 10px;
+  text-align: center;
+}
+
+.chat-bubble {
+  border-radius: 9px;
+  font-size: 9px;
+  line-height: 1.6;
+  max-width: 75%;
+  padding: 10px 12px;
+}
+
+.user-bubble {
+  background: #edf5ef;
+  color: #55705c;
+  margin-left: auto;
+}
+
+.chat-response {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.response-sparkle {
+  align-items: center;
+  background: #f8f1e8;
+  border-radius: 6px;
+  color: #bf9461;
+  display: flex;
+  flex: 0 0 auto;
+  height: 23px;
+  justify-content: center;
+  width: 23px;
+}
+
+.chat-response > div {
+  flex: 1;
+}
+
+.chat-response strong {
+  color: #536057;
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.chat-response p {
+  color: #7e8981;
+  font-size: 8px;
+  line-height: 1.65;
+  margin: 6px 0 8px;
+}
+
+.response-note {
+  align-items: center;
+  border-top: 1px solid #f1f2ee;
+  color: #69766d;
+  display: flex;
+  font-size: 8px;
+  gap: 9px;
+  padding: 7px 0;
+}
+
+.response-note span {
+  color: #93aa96;
+  font-size: 7px;
+}
+
+.prompt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 13px 0 12px;
+}
+
+.prompt-chips span {
+  border: 1px solid #ecede9;
+  border-radius: 20px;
+  color: #768178;
+  font-size: 7px;
+  padding: 6px 9px;
+}
+
+.chat-input {
+  align-items: center;
+  border: 1px solid #ebede9;
+  border-radius: 7px;
+  color: #a3aaa4;
+  display: flex;
+  font-size: 8px;
+  justify-content: space-between;
+  padding: 6px 7px 6px 10px;
+}
+
+.send-button {
+  align-items: center;
+  background: #568366;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.assistant-decoration {
+  color: #d4ae7c;
+  position: absolute;
+}
+
+.decoration-star {
+  font-size: 24px;
+  right: 1%;
+  top: 36px;
+  transform: rotate(12deg);
+}
+
+.decoration-sparkle {
+  bottom: 40px;
+  color: #82a28a;
+  left: 4%;
+}
+
+@media (max-width: 800px) {
+  .assistant-inner {
+    gap: 25px;
+    grid-template-columns: 1fr;
+    padding-bottom: 65px;
+    padding-top: 65px;
+  }
+
+  .assistant-copy {
+    margin: 0 auto;
+    max-width: 560px;
+  }
+
+  .assistant-art {
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .assistant-inner {
+    padding-bottom: 52px;
+    padding-top: 52px;
+  }
+
+  .assistant-art {
+    min-height: 300px;
+  }
+
+  .assistant-window {
+    padding: 0 13px 13px;
+  }
+}

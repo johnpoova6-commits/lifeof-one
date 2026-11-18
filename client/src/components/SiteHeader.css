@@ -1,0 +1,148 @@
+.site-header {
+  background: var(--mint);
+  position: relative;
+  z-index: 5;
+}
+
+.header-inner {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--page-width);
+  min-height: 82px;
+  padding: 0 36px;
+}
+
+.brand {
+  align-items: center;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 19px;
+  font-weight: 750;
+  gap: 10px;
+  letter-spacing: -0.8px;
+  text-decoration: none;
+}
+
+.brand-light {
+  color: var(--green);
+  font-weight: 500;
+}
+
+.brand-mark {
+  display: grid;
+  gap: 3px;
+  grid-template-columns: repeat(2, 8px);
+  transform: rotate(-8deg);
+}
+
+.brand-mark span {
+  background: var(--green);
+  border-radius: 3px;
+  height: 8px;
+  width: 8px;
+}
+
+.brand-mark span:nth-child(2),
+.brand-mark span:nth-child(3) {
+  background: #a4cbbd;
+}
+
+.main-nav,
+.nav-links {
+  align-items: center;
+  display: flex;
+}
+
+.main-nav {
+  gap: 38px;
+}
+
+.nav-links {
+  gap: 34px;
+}
+
+.nav-links a {
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 550;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.header-cta {
+  align-items: center;
+  background: var(--green);
+  border-radius: 7px;
+  color: white;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 650;
+  gap: 10px;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.header-cta:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+}
+
+.menu-toggle {
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  display: none;
+  padding: 8px;
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    min-height: 70px;
+    padding: 0 22px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .main-nav {
+    align-items: stretch;
+    background: var(--mint);
+    border-bottom: 1px solid var(--line);
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    left: 0;
+    padding: 22px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .nav-links {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-links a {
+    border-bottom: 1px solid rgba(31, 70, 56, 0.09);
+    padding: 14px 0;
+  }
+
+  .header-cta {
+    justify-content: center;
+  }
+}
