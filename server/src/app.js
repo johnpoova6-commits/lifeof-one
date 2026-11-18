@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { OAuth2Client } from 'google-auth-library';
 import mongoose from 'mongoose';
 import { createHash, randomBytes } from 'node:crypto';
@@ -10,6 +11,13 @@ import { Session, StoredFile, User, Workspace } from './models.js';
 
 const app = express();
 const googleAuthClient = new OAuth2Client();
+const localDevelopmentOrigins = process.env.NODE_ENV === 'production'
+  ? []
+  : ['http://localhost:4173', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'];
+const allowedOrigins = new Set([
+  ...localDevelopmentOrigins,
+  ...(process.env.CLIENT_URL ? [new URL(process.env.CLIENT_URL).origin] : []),
+]);
 const maxFileSizeMb = Number(process.env.MAX_UPLOAD_SIZE_MB || 100);
 if (!Number.isSafeInteger(maxFileSizeMb) || maxFileSizeMb < 1 || maxFileSizeMb > 1024) {
   throw new Error('MAX_UPLOAD_SIZE_MB must be a whole number between 1 and 1024.');
@@ -17,6 +25,11 @@ if (!Number.isSafeInteger(maxFileSizeMb) || maxFileSizeMb < 1 || maxFileSizeMb >
 const maxFileSize = maxFileSizeMb * 1024 * 1024;
 
 app.use(express.json({ limit: '100kb' }));
+app.use(cors({
+  origin(origin, callback) {
+    callback(null, !origin || allowedOrigins.has(origin));
+  },
+}));
 
 const asyncRoute = (handler) => (request, response, next) => {
   Promise.resolve(handler(request, response, next)).catch(next);
@@ -104,7 +117,7 @@ app.post('/api/auth/forgot-password', asyncRoute(async (request, response) => {
   if (!SMTP_HOST || !Number.isSafeInteger(port) || port < 1 || port > 65535
     || !SMTP_USER || !SMTP_PASSWORD || !SMTP_FROM || !CLIENT_URL) {
     response.status(503).json({
-      error: 'Password reset email is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_FROM, and CLIENT_URL in server/.env.',
+      error: 'Password reset email is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_FROM, and CLIENT_URL in the server environment.',
     });
     return;
   }
@@ -114,7 +127,7 @@ app.post('/api/auth/forgot-password', asyncRoute(async (request, response) => {
     resetUrl = new URL('/reset-password', CLIENT_URL);
     if (!['http:', 'https:'].includes(resetUrl.protocol)) throw new Error('Unsupported client URL protocol.');
   } catch {
-    response.status(503).json({ error: 'CLIENT_URL must be a valid http or https URL in server/.env.' });
+    response.status(503).json({ error: 'CLIENT_URL must be a valid http or https URL in the server environment.' });
     return;
   }
 

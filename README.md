@@ -23,6 +23,12 @@ Open the Vite URL and choose **Get started → Explore the browser preview**. Pr
 npm run dev:stack
 ```
 
+### Deploy the API on Render
+
+Create a Render Web Service with **Root Directory** `server`, **Build Command** `npm install`, and **Start Command** `npm start`. Set `MONGODB_URI` to a hosted MongoDB connection string (for example, MongoDB Atlas), `JWT_SECRET` to a secure random value of at least 32 characters, and `CLIENT_URL` to the exact public URL of the frontend. Add `GOOGLE_CLIENT_ID` and any SMTP settings as needed. Render supplies `PORT`; the server binds to `0.0.0.0`. Do not upload `.env` files or use the localhost URI from `server/.env.example` in production.
+
+The API allows the configured `CLIENT_URL` origin for cross-origin browser requests. Local Vite origins are allowed outside production. Keep `CLIENT_URL` set to the frontend origin, without an API path.
+
 Vite proxies `/api` requests to Express on port 5000. The API provides email registration/sign-in, revocable sessions, Google Identity Services popup sign-in with Google ID-token signature, audience, issuer, expiration, and verified-email checks, one-hour single-use password reset links, and user-scoped MongoDB workspace persistence. `/dashboard` requires a verified session; `/preview` remains an unauthenticated browser-only preview. The health endpoint is available at `http://localhost:5000/api/health`.
 
 To run the production preview on port 4173 after configuring the environment files, build with `npm run build`, start the API with `npm run dev --workspace server`, and start the preview in another terminal with `npm run preview --workspace client -- --host 0.0.0.0 --port 4173`. Restart Vite or rebuild after changing `client/.env`.
